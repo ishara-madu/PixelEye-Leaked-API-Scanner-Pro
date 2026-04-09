@@ -1,0 +1,119 @@
+{
+    "gemini": {
+        "keywords": "(AIza+AND+gemini)",
+        "prefix": "AIza",
+        "length": 39,
+        "test_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={key}",
+        "method": "POST",
+        "payload": {
+            "contents": [
+                {
+                    "parts": [
+                        {
+                            "text": "Hello"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "chatgpt": {
+        "keywords": "(sk-+AND+openai)",
+        "prefix": "sk-",
+        "length": 164,
+        "test_url": "https://api.openai.com/v1/models",
+        "method": "GET",
+        "payload": null
+    },
+    "claude": {
+        "keywords": "(sk-ant-api03-+AND+anthropic)",
+        "prefix": "sk-ant-api03-",
+        "length": 108,
+        "test_url": "https://api.anthropic.com/v1/messages",
+        "method": "POST",
+        "custom_headers": {
+            "anthropic-version": "2023-06-01",
+            "x-api-key": "{key}"
+        },
+        "payload": {
+            "model": "claude-3-haiku-20240307",
+            "max_tokens": 1,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": "Hi"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "groq": {
+        "keywords": "(gsk_+AND+groq)",
+        "prefix": "gsk_",
+        "length": 56,
+        "test_url": "https://api.groq.com/openai/v1/chat/completions",
+        "method": "POST",
+        "payload": {
+            "model": "llama-3.3-70b-versatile",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "Explain the importance of fast language models"
+                }
+            ]
+        }
+    },
+    "mistral": {
+        "keywords": "(sk-+AND+mistral)",
+        "prefix": "sk-",
+        "length": 30,
+        "test_url": "https://api.mistral.ai/v1/models",
+        "method": "GET",
+        "payload": null
+    },
+    "perplexity": {
+        "keywords": "(pplx-+AND+perplexity)",
+        "prefix": "pplx-",
+        "length": 40,
+        "test_url": "https://api.perplexity.ai/models",
+        "method": "GET",
+        "payload": null
+    },
+    "deepseek": {
+        "keywords": "(sk-+AND+deepseek)",
+        "prefix": "sk-",
+        "length": 32,
+        "test_url": "https://api.deepseek.com/chat/completions",
+        "method": "POST",
+        "payload": {
+            "model": "deepseek-chat",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "Hi"
+                }
+            ],
+            "max_tokens": 1
+        }
+    },
+    "google_maps": {
+        "keywords": "(AIzaSy+AND+maps)",
+        "prefix": "AIzaSy",
+        "length": 39,
+        "test_url": "https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key={key}",
+        "method": "GET",
+        "payload": null
+    },
+    "openweathermap": {
+        "keywords": "(openweathermap+AND+api_key)",
+        "prefix": "",
+        "length": 32,
+        "test_url": "https://api.openweathermap.org/data/2.5/weather?q=London&appid={key}",
+        "method": "GET",
+        "payload": null
+    }
+}
