@@ -2,7 +2,7 @@
 
 PixelEye Leaked API Scanner Pro is a high-performance, stealthy, and modular security tool designed to discover, extract, and validate leaked API keys across various platforms. Featuring a premium dark-mode GUI and a multi-threaded validation engine, it provides a seamless workflow from discovery to live testing.
 
-![Scanner Dashboard](scanner_dashboard_bg_1775738036331)
+![Scanner Dashboard](images/dashboard.png)
 
 ## 🌟 Key Features
 
