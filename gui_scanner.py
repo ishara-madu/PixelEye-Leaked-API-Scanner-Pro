@@ -340,11 +340,43 @@ class APIScanner:
         try:
             print(f"[*] Navigating to GitHub Search...")
             await page.goto(url, wait_until="domcontentloaded", timeout=90000)
-            # ...
+            
+            # පිටුව සම්පූර්ණයෙන් load වෙන්න තත්පර 2ක් දෙනවා
+            await asyncio.sleep(2)
 
-            if "github.com/login" in page.url or await page.query_selector("input[name='login']"):
-                print("[!] Action Required: Please log in via the browser window.")
-                await page.wait_for_selector("div.codesearch-results, div[data-testid='results-list']", timeout=0)
+            # --- ලොග් වෙලාද නැද්ද කියලා හොයන අලුත් ක්‍රමය ---
+            # Login URL එකේ ඉන්නවද, එහෙමත් නැත්නම් 'Sign in' Button එක තියෙනවද කියලා බලනවා
+            needs_login = False
+            if "login" in page.url:
+                needs_login = True
+            elif await page.query_selector('a[href^="/login"]'):
+                needs_login = True
+
+            if needs_login:
+                print("\n=======================================================")
+                print("[!] ACTION REQUIRED: You are not logged into GitHub.")
+                print("[!] Please use the opened browser window to log in.")
+                print("[!] The script is paused. Waiting for you to log in...")
+                print("=======================================================\n")
+                
+                try:
+                    # සාර්ථකව ලොග් වෙනකන් (Profile picture එක එනකන්) විනාඩි 5ක් බලන් ඉන්නවා
+                    await page.wait_for_selector('img.avatar', timeout=300000) 
+                    print("[+] Successfully detected login! Resuming scan...\n")
+                    
+                    # ලොග් වුණාට පස්සේ ආයේ search පිටුවට යනවා
+                    await page.goto(url, wait_until="domcontentloaded", timeout=90000)
+                    await asyncio.sleep(3)
+                except Exception as e:
+                    print(f"[-] Login detection timed out. Script will skip this page.")
+                    return []
+            # --- අලුත් කෑල්ල ඉවරයි ---
+
+            # සාමාන්‍ය විදිහට search results ටික load වෙනකන් බලන් ඉන්නවා
+            try:
+                await page.wait_for_selector("div.codesearch-results, div[data-testid='results-list']", timeout=15000)
+            except:
+                print("[!] Warning: Search results container not found quickly, proceeding anyway...")
                 await asyncio.sleep(2)
 
             results = await page.evaluate("""() => {
@@ -360,12 +392,13 @@ class APIScanner:
                 });
                 return data;
             }""")
-            # If we couldn't find structured results, return the whole page as a fallback
+            
             if not results:
                 text_content = await page.evaluate("document.body.innerText")
                 return [{"text": text_content, "url": None}]
                 
             return results
+            
         except Exception as e:
             if "Target page, context or browser has been closed" in str(e):
                 return []

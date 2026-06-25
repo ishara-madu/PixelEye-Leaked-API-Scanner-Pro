@@ -1,7 +1,7 @@
 {
     "gemini": {
-        "keywords": "(AIza+AND+gemini)",
-        "prefix": "AIza",
+        "keywords": "(AIzaSy+AND+google)",
+        "prefix": "AIzaSy",
         "length": 39,
         "test_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={key}",
         "method": "POST",
@@ -15,7 +15,8 @@
                     ]
                 }
             ]
-        }
+        },
+        "synonyms": "(access_key+OR+secret_key+OR+access_token+OR+api_key+OR+apikey+OR+api_secret+OR+apiSecret+OR+app_secret+OR+application_key+OR+app_key+OR+appkey+OR+auth_token+OR+authsecret)"
     },
     "chatgpt": {
         "keywords": "(sk-+AND+openai)",
@@ -86,7 +87,7 @@
     "deepseek": {
         "keywords": "(sk-+AND+deepseek)",
         "prefix": "sk-",
-        "length": 32,
+        "length": 31,
         "test_url": "https://api.deepseek.com/chat/completions",
         "method": "POST",
         "payload": {
@@ -98,7 +99,8 @@
                 }
             ],
             "max_tokens": 1
-        }
+        },
+        "synonyms": "(access_key+OR+secret_key+OR+access_token+OR+api_key+OR+apikey+OR+api_secret+OR+apiSecret+OR+app_secret+OR+application_key+OR+app_key+OR+appkey+OR+auth_token+OR+authsecret)"
     },
     "google_maps": {
         "keywords": "(AIzaSy+AND+maps)",
@@ -114,6 +116,36 @@
         "length": 32,
         "test_url": "https://api.openweathermap.org/data/2.5/weather?q=London&appid={key}",
         "method": "GET",
-        "payload": null
+        "payload": null,
+        "synonyms": null
+    },
+    "OpenRouter": {
+        "keywords": "(sk-or-v1-+AND+openrouter)",
+        "prefix": "sk-or-v1-",
+        "length": 70,
+        "test_url": "https://openrouter.ai/api/v1/responses",
+        "method": "POST",
+        "payload": {
+            "input": "Tell me a joke",
+            "model": "openai/gpt-oss-120b:free"
+        },
+        "synonyms": "(access_key+OR+secret_key+OR+access_token+OR+api_key+OR+apikey+OR+api_secret+OR+apiSecret+OR+app_secret+OR+application_key+OR+app_key+OR+appkey+OR+auth_token+OR+authsecret+OR+key)"
+    },
+    "xAI": {
+        "keywords": "(gsk_+AND+grok)",
+        "prefix": "gsk_",
+        "length": 56,
+        "test_url": "https://api.x.ai/v1/chat/completions",
+        "method": "POST",
+        "payload": {
+            "model": "grok-beta",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "What is the meaning of life, the universe, and everything?"
+                }
+            ]
+        },
+        "synonyms": "(access_key+OR+secret_key+OR+access_token+OR+api_key+OR+apikey+OR+api_secret+OR+apiSecret+OR+app_secret+OR+application_key+OR+app_key+OR+appkey+OR+auth_token+OR+authsecret)"
     }
 }
